@@ -1,1 +1,17 @@
 <p>eventos works!</p>
+
+<!-- <div>
+    <p>{{eventos[0].Tema}}</p>
+</div>
+<div>
+    <p>{{eventos[1].Tema}}</p>
+</div>
+<div>
+   <p>{{eventos[2].Tema}}</p> 
+</div> -->
+
+<div *ngFor="let evento of eventos">
+    <p>{{eventos.Tema}}</p>
+    <p>{{eventos.Local}}</p>
+</div>
+
