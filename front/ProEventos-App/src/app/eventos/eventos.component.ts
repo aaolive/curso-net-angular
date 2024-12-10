@@ -11,20 +11,20 @@ import { response } from 'express';
 export class EventosComponent implements OnInit {
 
 
-  // public eventos: any = [
-  //   {
-  //     Tema: 'Angular 18',
-  //     Local: 'Belo Horizonte'
-  //   },
-  //   {
-  //     Tema: 'Java 21',
-  //     Local: 'Belo Horizonte'
-  //   },
-  //   {
-  //     Tema: 'C# 9',
-  //     Local: 'Belo Horizonte'
-  //   }
-  // ]
+  public eventos: any = [
+    {
+      Tema: 'Angular 18',
+      Local: 'Belo Horizonte'
+    },
+    {
+      Tema: 'Java 21',
+      Local: 'Belo Horizonte'
+    },
+    {
+      Tema: 'C# 9',
+      Local: 'Belo Horizonte'
+    }
+  ]
 
   constructor(private http: HttpClient) { }
 
