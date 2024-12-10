@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ProEventos.API.Models
+namespace ProEventos.Domain
 {
     public class Evento
     {
@@ -11,6 +11,9 @@ namespace ProEventos.API.Models
         public string Nome { get; set; }
         public string Descricao { get; set; }
         public DateTime DataEvento { get; set; }
+        public IEnumerable<Lote> Lotes { get; set; }
+        public IEnumerable<RedeSocial> RedeSocials { get; set; }
+        public IEnumerable<PalestranteEvento> PalestrantesEventos { get; set; }
 
         public Evento()
         {
