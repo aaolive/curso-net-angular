@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using ProEventos.Domain;
 
 namespace ProEventos.Persistence
@@ -13,6 +14,7 @@ namespace ProEventos.Persistence
         public EventosPersistence(ProEventosContext context)
         {
             this._context = context;
+            this._context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;// corrige erro de update de objeto
             
         }
         public Task<Evento[]> GetAllEventosAsync(bool includePalestrante)
