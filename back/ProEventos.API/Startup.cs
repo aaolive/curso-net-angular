@@ -13,6 +13,9 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using ProEventos.API.Data;
+using ProEventos.Application;
+using ProEventos.Domain;
+using ProEventos.Persistence;
 
 namespace ProEventos.API
 {
@@ -34,6 +37,11 @@ namespace ProEventos.API
             );
             
             services.AddControllers();
+
+            services.AddScoped<IEventoService, EventoService>();
+            services.AddScoped<IGeralPersistence, GeralPersistence>();
+            services.AddScoped<IEventosPersistence, EventosPersistence>();
+
             services.AddCors();
             services.AddSwaggerGen(c =>
             {

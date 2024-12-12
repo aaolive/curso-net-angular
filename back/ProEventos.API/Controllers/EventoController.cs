@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ProEventos.API.Data;
+using ProEventos.Application;
 using ProEventos.Domain;
 
 namespace ProEventos.API.Controllers
@@ -10,27 +13,40 @@ namespace ProEventos.API.Controllers
     [Route("[controller]")]
     public class EventoController : ControllerBase
     {
-        private readonly DataContext context;
-               
-        public EventoController(DataContext context) // recebe o contexto de BD por injecao de dependencia
+        private readonly IEventoService eventoService;
+
+        public EventoController(IEventoService eventoService) // recebe o contexto de BD por injecao de dependencia
         {
-            this.context = context;
-            
+            this.eventoService = eventoService;
         }
 
            	
 
         [HttpGet]
-        public IEnumerable<Evento> Get()
+        public async Task<IActionResult> Get()
         {
-            return context.Eventos;
+            try
+            {
+                var eventos = await eventoService.GetAllEventosAsync(true);
+                if (eventos == null)
+                {
+                    return NotFound("nada encontrado");
+                }
+
+                return Ok(eventos);
+            }
+            catch (System.Exception e)
+            {
+                
+                return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro: {e.Message}");
+            }
         }
 
-        [HttpGet("(id)")]
-        public IEnumerable<Evento> Get(int id)
-        {
-            return context.Eventos.Where(evento => evento.Id == id);
-        }
+        // [HttpGet("(id)")]
+        // public IEnumerable<Evento> Get(int id)
+        // {
+        //     // return context.Eventos.Where(evento => evento.Id == id);
+        // }
 
     }
 }
