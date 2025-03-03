@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { response } from 'express';
-import { EventoService } from '../services/evento.service';
-import { Evento } from '../models/Evento';
+import { EventoService } from '../../services/evento.service';
+import { Evento } from '../../models/Evento';
 
 @Component({
   selector: 'app-eventos',
@@ -45,6 +45,6 @@ export class EventosComponent implements OnInit {
   }
 
 
-  
+
 
 }
