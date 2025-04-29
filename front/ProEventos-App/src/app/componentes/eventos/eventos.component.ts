@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { response } from 'express';
+import { EventoService } from '../../services/evento.service';
+import { Evento } from '../../models/Evento';
 
 @Component({
   selector: 'app-eventos',
@@ -11,7 +13,7 @@ import { response } from 'express';
 export class EventosComponent implements OnInit {
 
 
-  public eventos: any = [
+  /* public eventos: any = [
     {
       Tema: 'Angular 18',
       Local: 'Belo Horizonte'
@@ -24,18 +26,25 @@ export class EventosComponent implements OnInit {
       Tema: 'C# 9',
       Local: 'Belo Horizonte'
     }
-  ]
+  ] */
 
-  constructor(private http: HttpClient) { }
+  public eventos: Evento[] = [];
+
+  // foi criado um servico na pasta services e usado aqui. ele contem a url que é chamada
+  constructor(private eventoService: EventoService) { }
 
   ngOnInit(): void {
     this.getEventos();
   }
 
   public getEventos(): void {
-    this.http.get('endereco api').subscribe(
+    this.eventoService.getEventos().subscribe(
       response => this.eventos = response,
       error => console.log(error)
     )
   }
+
+
+
+
 }
